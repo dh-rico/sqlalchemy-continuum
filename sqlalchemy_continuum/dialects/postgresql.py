@@ -4,9 +4,15 @@ from sqlalchemy_continuum.plugins import PropertyModTrackerPlugin
 
 
 trigger_sql = """
-CREATE TRIGGER {trigger_name}
-AFTER INSERT OR UPDATE OR DELETE ON {table_name}
-FOR EACH ROW EXECUTE PROCEDURE {procedure_name}()
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = '{trigger_name}') THEN
+        CREATE TRIGGER {trigger_name}
+        AFTER INSERT OR UPDATE OR DELETE ON {table_name}
+        FOR EACH ROW EXECUTE PROCEDURE {procedure_name}();
+    END IF;
+END
+$$;
 """
 
 upsert_cte_sql = """

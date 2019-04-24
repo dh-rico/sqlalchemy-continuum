@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pip = "*"
+anyjson = "*"
+psycopg2 = "*"
+PyMySQL = "*"
+sqlalchemy = "*"
+sqlalchemy_utils = "*"
+six = "*"
+flask = "*"
+flask-login = "*"
+flask-sqlalchemy = "*"
+flexmock = "*"
+i18n = "*"
+pytest = "*"
+coverage = "*"
+
+[requires]
+python_version = "3.7"
